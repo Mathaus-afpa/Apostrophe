@@ -1,4 +1,4 @@
-package apostrophe.javaee;
+package apostrophe.java.javaee;
 import java.io.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;

@@ -59,3 +59,8 @@
         </c:when>
     </c:choose>
 </div>
+<div class="content flex-col justify-items-center pl-60">
+    <c:if test="${not empty page}">
+        <jsp:include page="${page}" />
+    </c:if>
+</div>
