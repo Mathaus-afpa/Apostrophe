@@ -1,5 +1,6 @@
 package apostrophe.java.javaee.visiteur;
 import apostrophe.java.Cache;
+import apostrophe.java.javaee.PAGES;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
@@ -17,7 +18,13 @@ public class AccueilServlet extends HttpServlet {
 		Cache.initCache();
 	}
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("app.jsp");
-		dispatcher.forward(request, response);
+		try {
+			request.setAttribute("page", PAGES.VISITEUR + PAGES.ACCUEIL);
+			request.setAttribute("livres", Cache.getTop3LivresByQuantite());
+			RequestDispatcher dispatcher = request.getRequestDispatcher(PAGES.APP);
+			dispatcher.forward(request, response);
+		} catch (ServletException e) {
+			Log.error(e.getMessage(), e);
+		}
 	}
 }

@@ -1,6 +1,7 @@
 package apostrophe.java.javaee.visiteur.livre;
 import apostrophe.java.Cache;
 import apostrophe.java.javaee.PAGES;
+import apostrophe.java.utilitaires.Log;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -17,7 +18,7 @@ public class LivresServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(PAGES.APP);
 			dispatcher.forward(request, response);
 		} catch (ServletException e) {
-			//todo: log
+			Log.error(e.getMessage(), e);
 		}
 	}
 }
