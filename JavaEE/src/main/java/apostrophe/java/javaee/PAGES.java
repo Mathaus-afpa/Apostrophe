@@ -30,4 +30,5 @@ public class PAGES {
 	public static String LISTE_CLIENTS = "/clients.jsp";
 	public static String DETAILS_CLIENT = "/client.jsp";
 	public static String COMPTE_CLIENT = "/compte_client.jsp";
+	public static String CGU = "/cgu.jsp";
 }
