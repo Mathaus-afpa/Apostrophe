@@ -31,4 +31,5 @@ public class PAGES {
 	public static String DETAILS_CLIENT = "/client.jsp";
 	public static String COMPTE_CLIENT = "/compte_client.jsp";
 	public static String CGU = "/cgu.jsp";
+	public static String MDP = "/motdepasseperdu.jsp";
 }
