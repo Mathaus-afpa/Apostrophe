@@ -1,6 +1,5 @@
 package apostrophe.java.exceptions;
 import apostrophe.java.utilitaires.Log;
-
 /**
  * [Exception.JsonException] - class
  * @author Mathaus

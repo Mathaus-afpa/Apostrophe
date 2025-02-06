@@ -35,20 +35,15 @@ public final class Log {
 	private Log() {
 		throw new UnsupportedOperationException("Classe statique.");
 	}
-	public static Logger getLogger() {
-		return LOGGER;
-	}
 	//<editor-fold defaultstate="collapsed" desc="Méthodes utilitaires">
 	public static void info(String message) {
 		LOGGER.info(message);
 	}
-	public static void warning(String message) {
-		LOGGER.warning(message);
+	public static void error(String message) {
+		LOGGER.log(Level.SEVERE, message);
 	}
 	public static void error(String message, Throwable throwable) {
 		LOGGER.log(Level.SEVERE, message, throwable);
 	}
-	//</editor-fold>
-	//<editor-fold defaultstate="collapsed" desc="Méthodes utilitaires">
 	//</editor-fold>
 }

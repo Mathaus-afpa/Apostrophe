@@ -20,7 +20,7 @@ public class AccueilServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		try {
 			request.setAttribute("page", PAGES.VISITEUR + PAGES.ACCUEIL);
-			request.setAttribute("livres", Cache.getTop3LivresByQuantite());
+			request.setAttribute("livres", Cache.listerLeTopLivresParQuantite());
 			RequestDispatcher dispatcher = request.getRequestDispatcher(PAGES.APP);
 			dispatcher.forward(request, response);
 		} catch (ServletException e) {

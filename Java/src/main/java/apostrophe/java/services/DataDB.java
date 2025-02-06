@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-
 /**
  * [DataDB] - class
  * @author Mathaus
@@ -86,7 +85,6 @@ public class DataDB {
 	}
 	private static boolean maintenirConnection = false;
 	private static boolean forcerRequete = false;
-
 	public static boolean isMaintenirConnection() {
 		return maintenirConnection;
 	}

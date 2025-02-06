@@ -16,7 +16,6 @@ import apostrophe.java.livre.LivreDAO;
 import apostrophe.java.services.DataDB;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.TreeMap;
 /**
  * [Cache] - class
@@ -25,12 +24,12 @@ import java.util.TreeMap;
 public class Cache {
 	private Cache() {}
 	//<editor-fold defaultstate="expanded" desc="CACHE MAPS">
-	private static final Map<Integer, Auteur> AUTEURS = new TreeMap();
-	private static final Map<Integer, Categorie> CATEGORIES = new TreeMap();
-	private static final Map<Integer, Client> CLIENTS = new TreeMap();
-	private static final Map<Integer, Compte> COMPTES = new TreeMap();
-	private static final Map<Integer, Libraire> LIBRAIRES = new TreeMap();
-	private static final Map<Integer, Livre> LIVRES = new TreeMap();
+	private static final TreeMap<Integer, Auteur> AUTEURS = new TreeMap<>();
+	private static final TreeMap<Integer, Categorie> CATEGORIES = new TreeMap<>();
+	private static final TreeMap<Integer, Client> CLIENTS = new TreeMap<>();
+	private static final TreeMap<Integer, Compte> COMPTES = new TreeMap<>();
+	private static final TreeMap<Integer, Libraire> LIBRAIRES = new TreeMap<>();
+	private static final TreeMap<Integer, Livre> LIVRES = new TreeMap<>();
 	private static boolean isLoaded = false;
 	//</editor-fold>
 	//<editor-fold defaultstate="expanded" desc="FONCTIONS CACHE">
@@ -72,30 +71,61 @@ public class Cache {
 	}
 	//</editor-fold>
 	//<editor-fold defaultstate="expanded" desc="LIRE DONNEE">
+	//	AUTEURS
+	public static List<Auteur> listerAuteurs() {
+		return new ArrayList<>(AUTEURS.values());
+	}
 	public static Auteur getAuteur(int id) throws NullDataException {
 		Auteur auteur = AUTEURS.get(id);
 		if (auteur == null) throw new NullDataException("Cache.getAuteur");
 		return auteur;
+	}
+	//	CATEGORIES
+	public static List<Categorie> listerCategories() {
+		return new ArrayList<>(CATEGORIES.values());
 	}
 	public static Categorie getCategorie(int id) throws NullDataException {
 		Categorie categorie = CATEGORIES.get(id);
 		if (categorie == null) throw new NullDataException("Cache.getCategorie");
 		return categorie;
 	}
+	//	CLIENTS
+	public static List<Client> listerClients() {
+		return new ArrayList<>(CLIENTS.values());
+	}
 	public static Client getClient(int id) throws NullDataException {
 		Client client = CLIENTS.get(id);
 		if (client == null) throw new NullDataException("Cache.getClient");
 		return client;
+	}
+	//	COMPTES
+	public static List<Compte> listerComptes() {
+		return new ArrayList<>(COMPTES.values());
 	}
 	public static Compte getCompte(int id) throws NullDataException {
 		Compte compte = COMPTES.get(id);
 		if (compte == null) throw new NullDataException("Cache.getCompte");
 		return compte;
 	}
+	//	LIBRAIRES
+	public static List<Libraire> listerLibraires() {
+		return new ArrayList<>(LIBRAIRES.values());
+	}
 	public static Libraire getLibraire(int id) throws NullDataException {
 		Libraire libraire = LIBRAIRES.get(id);
 		if (libraire == null) throw new NullDataException("Cache.getLibraire");
 		return libraire;
+	}
+	//	LIVRES
+	public static List<Livre> listerLivres() {
+		return new ArrayList<>(LIVRES.values());
+	}
+	public static List<Livre> listerLeTopLivresParQuantite() {
+		// Trier les livres par quantité en ordre décroissant
+		List<Livre> sortedLivres = listerLivres();
+		sortedLivres.sort((l1, l2) -> Integer.compare(l2.getQuantite(), l1.getQuantite()));
+		// Retourner les 3 premiers livres
+		return sortedLivres.size() > 3 ? sortedLivres.subList(0, 3) : sortedLivres;
 	}
 	public static Livre getLivre(int id) throws NullDataException {
 		Livre livre = LIVRES.get(id);
@@ -123,7 +153,7 @@ public class Cache {
 		LIVRES.clear();
 	}
 	//</editor-fold>
-	//<editor-fold defaultstate="expanded" desc="Validateurs">
+	//<editor-fold defaultstate="expanded" desc="INITIALISER LES CACHES">
 	public static void initCache() {
 		if (!isLoaded) {
 			DataDB.setForcerRequete(true);
@@ -137,30 +167,5 @@ public class Cache {
 			DataDB.setForcerRequete(false);
 		}
 	}
-	public static List<Auteur> listerAuteurs() {
-		return new ArrayList<>(AUTEURS.values());
-	}
-	public static List<Categorie> listerCategories() {
-		return new ArrayList<>(CATEGORIES.values());
-	}
-	public static List<Client> listerClients() {
-		return new ArrayList<>(CLIENTS.values());
-	}
-	public static List<Compte> listerComptes() {
-		return new ArrayList<>(COMPTES.values());
-	}
-	public static List<Libraire> listerLibraires() {
-		return new ArrayList<>(LIBRAIRES.values());
-	}
-	public static List<Livre> listerLivres() {
-		return new ArrayList<>(LIVRES.values());
-	}
 	//</editor-fold>
-	public static List<Livre> getTop3LivresByQuantite() {
-		// Trier les livres par quantité en ordre décroissant
-		List<Livre> sortedLivres = listerLivres();
-		sortedLivres.sort((l1, l2) -> Integer.compare(l2.getQuantite(), l1.getQuantite()));
-		// Retourner les 3 premiers livres
-		return sortedLivres.size() > 3 ? sortedLivres.subList(0, 3) : sortedLivres;
-	}
 }

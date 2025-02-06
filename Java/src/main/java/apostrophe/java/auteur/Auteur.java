@@ -2,6 +2,7 @@ package apostrophe.java.auteur;
 import apostrophe.java.exceptions.RegExException;
 import org.json.JSONObject;
 import java.util.regex.Pattern;
+import static apostrophe.java.REGEX.*;
 /**
  * [Auteur] - class
  * @author Mathaus
@@ -13,11 +14,6 @@ public class Auteur {
 	public static final String JSON_NOM = "nom";
 	public static final String JSON_PRENOM = "prenom";
 	public static final String JSON_URL = "url";
-	//</editor-fold>
-	//<editor-fold defaultstate="expanded" desc="Champs JSON">
-	private static final String REGEX_NOM = "^[A-ZÀ-ÖØ-Ý][a-zà-öø-ÿ\\-\\s]{1,49}$";
-	private static final String REGEX_PRENOM = "^[A-ZÀ-ÖØ-Ý-a-zà-öø-ÿ\\-\\.\\s]{1,49}$";
-	private static final String REGEX_URL = ".*";//"^[\\w\\d_\\-]+\\.(jpg|jpeg|png|bmp)$";
 	//</editor-fold>
 	//<editor-fold defaultstate="expanded" desc="Champs prive">
 	private Integer id;
@@ -86,10 +82,6 @@ public class Auteur {
 	@Override
 	public String toString() {
 		return this.getNom() + " " + this.getPrenom();
-	}
-	public String toJson() {
-		JSONObject json = new JSONObject(this);
-		return json.toString();
 	}
 	//</editor-fold>
 }

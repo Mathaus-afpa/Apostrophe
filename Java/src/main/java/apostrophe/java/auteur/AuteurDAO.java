@@ -1,14 +1,11 @@
 package apostrophe.java.auteur;
-
 import apostrophe.java.Cache;
-
 import apostrophe.java.exceptions.*;
 import apostrophe.java.services.IApostropheInnerDAO;
 import org.json.JSONException;
 import org.json.JSONObject;
 import apostrophe.java.services.DataDB;
 import apostrophe.java.utilitaires.Log;
-
 import java.sql.*;
 import java.util.List;
 import java.util.concurrent.locks.Lock;
@@ -45,6 +42,7 @@ public class AuteurDAO {
 				Connection connectionBDD = DataDB.getInstance().getConnection();
 				PreparedStatement requetePreparee = AuteurRequetes.Insert(connectionBDD, nouvelAuteur);
 				int idNouvelAuteur = requetePreparee.executeUpdate();
+				requetePreparee.close();
 				// attribution de l'ID genere
 				nouvelAuteur.setId(idNouvelAuteur);
 				// validation de l'Auteur et mise en cache
@@ -73,6 +71,7 @@ public class AuteurDAO {
 						auteur = new Auteur();
 						lireAuteur(reponse, auteur); // validation de l'Auteur et mise en cache
 					}
+					requetePreparee.close();
 				} catch (SQLException | ModelException | RegExException e) {
 					throw new DaoException("IApostropheInnerDAO<Auteur>.find", e.getClass().getSimpleName());
 				} finally { cloturerAccesBdd(); }
@@ -95,6 +94,7 @@ public class AuteurDAO {
 						Auteur auteur = new Auteur();
 						lireAuteur(reponse, auteur); // validation de l'Auteur et mise en cache
 					}
+					requete.close();
 				} catch (SQLException | ModelException | RegExException | NullDataException e) {
 					throw new DaoException("IApostropheInnerDAO<Auteur>.findAll", e.getClass().getSimpleName());
 				} finally { cloturerAccesBdd(); }
@@ -123,6 +123,7 @@ public class AuteurDAO {
 				Connection connectionBDD = DataDB.getInstance().getConnection();
 				PreparedStatement requetePreparee = AuteurRequetes.Update(connectionBDD, auteur);
 				int lignesModifiees = requetePreparee.executeUpdate();
+				requetePreparee.close();
 				if (lignesModifiees != 1) { throw new DaoException("IApostropheInnerDAO<Auteur>.update", "lignes affectee : " + lignesModifiees); } // verifie l'impact de la modification
 			} catch (JSONException | SQLException | JsonException | ModelException | NullDataException | RegExException e) {
 				throw new DaoException("IApostropheInnerDAO<Auteur>.update", e.getClass().getSimpleName());
@@ -142,6 +143,7 @@ public class AuteurDAO {
 					Connection connectionBDD = DataDB.getInstance().getConnection();
 					PreparedStatement requetePreparee = AuteurRequetes.Delete(connectionBDD, id);
 					lignesSupprimees = requetePreparee.executeUpdate();
+					requetePreparee.close();
 				} catch (SQLException e) {
 					throw new DaoException("IApostropheInnerDAO<Auteur>.delete", e.getClass().getSimpleName());
 				} finally { cloturerAccesBdd(); }
@@ -176,27 +178,27 @@ public class AuteurDAO {
 	//<editor-fold defaultstate="expanded" desc="CRUD">
 	public static Auteur creer(String fromJson) {
 		try { return dao().create(fromJson); }
-		catch (DaoException e) {  Log.error(e.getMessage(), e.getCause()); }
+		catch (DaoException e) {  Log.error(DaoException.ECHEC_REQUETE + "AuteurDAO.creer"); }
 		return null;
 	}
 	public static Auteur rechercherParId(int id) {
 		try { return dao().find(id); }
-		catch (DaoException | NullDataException e) {  Log.error(e.getMessage(), e.getCause()); }
+		catch (DaoException | NullDataException e) {  Log.error(DaoException.ECHEC_REQUETE + "AuteurDAO.rechercherParId"); }
 		return null;
 	}
 	public static List<Auteur> rechercherTout() {
 		try { return dao().findAll(); }
-		catch (DaoException e) {  Log.error(e.getMessage(), e.getCause()); }
+		catch (DaoException e) {  Log.error(DaoException.ECHEC_REQUETE + "AuteurDAO.rechercherTout"); }
 		return null;
 	}
 	public  static Auteur modifier(String fromJson) {
 		try { return dao().update(fromJson); }
-		catch (DaoException e) {  Log.error(e.getMessage(), e.getCause()); }
+		catch (DaoException e) {  Log.error(DaoException.ECHEC_REQUETE + "AuteurDAO.modifier"); }
 		return null;
 	}
 	public static boolean supprimer(int id) {
 		try { return dao().delete(id); }
-		catch (DaoException | NullDataException | ModelException e) {  Log.error(e.getMessage(), e.getCause()); }
+		catch (DaoException | NullDataException | ModelException e) {  Log.error(DaoException.ECHEC_REQUETE + "AuteurDAO.supprimer"); }
 		return false;
 	}
 	//</editor-fold>
