@@ -7,8 +7,8 @@ public class ApostropheServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String route = request.getRequestURI().substring(request.getContextPath().length());
-        if (route.equals("/")) {
-            response.sendRedirect("/Accueil");
+        if (route.equals(ROUTES.EMPTY)) {
+            response.sendRedirect(ROUTES.ACCUEIL);
         } else {
             // Le chemin vers le fichier dans le système de fichiers
             String filePath = getServletContext().getRealPath(route);

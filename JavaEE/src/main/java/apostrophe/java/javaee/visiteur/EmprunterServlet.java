@@ -1,4 +1,5 @@
 package apostrophe.java.javaee.visiteur;
+import apostrophe.java.javaee.ROUTES;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,7 +14,7 @@ public class EmprunterServlet  extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		// Vérifier si la session existe et si l'utilisateur est bien authentifié
 		if (session == null || session.getAttribute("username") == null) {
-			response.sendRedirect("/Connexion");  // Rediriger vers la page de login si pas authentifié
+			response.sendRedirect(ROUTES.CONNEXION);  // Rediriger vers la page de login si pas authentifié
 			return;
 		}
 	}

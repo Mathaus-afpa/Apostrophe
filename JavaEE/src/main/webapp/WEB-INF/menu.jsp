@@ -11,6 +11,14 @@
                 <span class="text-center text-red-500">Visiteur</span>
             </c:otherwise>
         </c:choose>
+        <c:choose>
+            <c:when test="${not empty sessionScope.utilisateur}">
+                <span class="text-center text-red-500">${sessionScope.utilisateur}</span>
+            </c:when>
+            <c:otherwise>
+                <span class="text-center text-red-500">?</span>
+            </c:otherwise>
+        </c:choose>
         <!-- Logo -->
         <svg class="w-48" xmlns="http://www.w3.org/2000/svg" version="1.0" width="190.000000pt" height="180.000000pt"
              viewBox="0 0 190.000000 180.000000" preserveAspectRatio="xMidYMid meet">
@@ -39,14 +47,29 @@
         </div>
     </a>
     <!-- /Connexion -->
-    <a class="group" href="/Connexion">
-        <div class="p-2 pl-20 flex justify-start items-center bg-slate-50 rounded gap-3 hover:bg-gray-700 ease-in-out duration-300">
-            <svg class="w-8 text-gray-700 group-hover:text-lime-300" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor">
-                <path d="M480-440q-58 0-99-41t-41-99q0-58 41-99t99-41q58 0 99 41t41 99q0 58-41 99t-99 41Zm0-80q25 0 42.5-17.5T540-580q0-25-17.5-42.5T480-640q-25 0-42.5 17.5T420-580q0 25 17.5 42.5T480-520Zm0 460L120-280v-400l360-220 360 220v400L480-60Zm0-93 147-91q-34-18-71.5-27t-75.5-9q-38 0-75.5 9T333-244l147 91ZM256-291q50-34 107-51.5T480-360q60 0 117 17.5T704-291l56-33v-311L480-806 200-635v311l56 33Zm224-189Z"/>
-            </svg>
-            <span class="text-gray-700 font-medium group-hover:text-lime-300 group-hover:font-normal">S'identifier</span>
-        </div>
-    </a>
+    <c:choose>
+        <c:when test="${not empty sessionScope.utilisateur}">
+            <a class="group" href="/Deconnexion">
+                <div class="p-2 pl-20 flex justify-start items-center bg-slate-50 rounded gap-3 hover:bg-gray-700 ease-in-out duration-300">
+                    <svg class="w-8 text-gray-700 group-hover:text-lime-300" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor">
+                        <path d="M480-440q-58 0-99-41t-41-99q0-58 41-99t99-41q58 0 99 41t41 99q0 58-41 99t-99 41Zm0-80q25 0 42.5-17.5T540-580q0-25-17.5-42.5T480-640q-25 0-42.5 17.5T420-580q0 25 17.5 42.5T480-520Zm0 460L120-280v-400l360-220 360 220v400L480-60Zm0-93 147-91q-34-18-71.5-27t-75.5-9q-38 0-75.5 9T333-244l147 91ZM256-291q50-34 107-51.5T480-360q60 0 117 17.5T704-291l56-33v-311L480-806 200-635v311l56 33Zm224-189Z"/>
+                    </svg>
+                    <span class="text-red-700 font-medium group-hover:text-lime-300 group-hover:font-normal">Deconnexion</span>
+                </div>
+            </a>
+        </c:when>
+        <c:otherwise>
+            <a class="group" href="/Connexion">
+                <div class="p-2 pl-20 flex justify-start items-center bg-slate-50 rounded gap-3 hover:bg-gray-700 ease-in-out duration-300">
+                    <svg class="w-8 text-gray-700 group-hover:text-lime-300" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor">
+                        <path d="M480-440q-58 0-99-41t-41-99q0-58 41-99t99-41q58 0 99 41t41 99q0 58-41 99t-99 41Zm0-80q25 0 42.5-17.5T540-580q0-25-17.5-42.5T480-640q-25 0-42.5 17.5T420-580q0 25 17.5 42.5T480-520Zm0 460L120-280v-400l360-220 360 220v400L480-60Zm0-93 147-91q-34-18-71.5-27t-75.5-9q-38 0-75.5 9T333-244l147 91ZM256-291q50-34 107-51.5T480-360q60 0 117 17.5T704-291l56-33v-311L480-806 200-635v311l56 33Zm224-189Z"/>
+                    </svg>
+                    <span class="text-gray-700 font-medium group-hover:text-lime-300 group-hover:font-normal">S'identifier</span>
+                </div>
+            </a>
+        </c:otherwise>
+    </c:choose>
+
     <!-- /CGU -->
     <a class="group" href="/CGU">
         <div class="p-2 pl-20 flex justify-start items-center bg-slate-50 rounded gap-3 hover:bg-gray-700 ease-in-out duration-300">

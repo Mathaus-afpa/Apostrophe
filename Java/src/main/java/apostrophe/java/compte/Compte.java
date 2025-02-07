@@ -16,10 +16,12 @@ public class Compte {
 	//</editor-fold>
 	//<editor-fold defaultstate="expanded" desc="Champs JSON">
 	private static final String REGEX_LOGIN = "^(?!.*[._\\-]{2})[a-zA-Z0-9._\\-@]{1,50}$";
+	private static final String REGEX_ROLE = "^[123]$";
 	//</editor-fold>
 	//<editor-fold defaultstate="expanded" desc="Champs prive">
 	private Integer id;
 	private String login;
+	private Integer role;
 	//</editor-fold>
 	//<editor-fold defaultstate="expanded" desc="Getter">
 	public Integer getId() {
@@ -29,7 +31,12 @@ public class Compte {
 		return login;
 	}
 	public String getRole() {
-		return "apostrophe/java/libraire";
+		switch (role) {
+			case 1: return "administrateur";
+			case 2: return "libraire";
+			case 3: return "client";
+		}
+		return "";
 	}
 	//</editor-fold>
 	//<editor-fold defaultstate="expanded" desc="Setter">
@@ -40,6 +47,11 @@ public class Compte {
 		if (Pattern.matches(REGEX_LOGIN, login)) {
 			this.login = login;
 		} else { throw new RegExException("Compte.setLogin"); }
+	}
+	public void setRole(Integer role) throws RegExException {
+		if (role == 1 || role == 2 || role == 3) {
+			this.role = role;
+		} else { throw new RegExException("Compte.setRole"); }
 	}
 	//</editor-fold>
 	//<editor-fold defaultstate="expanded" desc="Validateurs">
@@ -54,11 +66,12 @@ public class Compte {
 	}
 	/**
 	 * Verifie la validite d'un json Compte
+	 *
 	 * @param compteJson
 	 * @return vrai ou faux
 	 */
 	public static final boolean ValiderJson(JSONObject compteJson) {
-		return compteJson.has(JSON_LOGIN);
+		return false;
 	}
 	//</editor-fold>
 	//<editor-fold defaultstate="expanded" desc="Serialisation">
@@ -69,6 +82,10 @@ public class Compte {
 	public String toJson() {
 		JSONObject json = new JSONObject(this);
 		return json.toString();
+	}
+
+	public boolean authentifier(String jwt, String sessionId) {
+		return true;
 	}
 	//</editor-fold>
 }

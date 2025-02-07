@@ -4,7 +4,8 @@
         <h2 class="text-center text-3xl font-extrabold text-gray-700">
             Connecte toi ! Petit(e) ivrogne !
         </h2>
-        <form method="POST" action="./connexion" class="mt-8 space-y-6">
+        <form method="POST" action="/Connexion" class="mt-8 space-y-6">
+            <input type="hidden" name="USERTOKEN" value="${USERTOKEN}">
             <div class="rounded-md shadow-sm">
                 <div>
                     <label class="sr-only" for="username">Identifiant</label>

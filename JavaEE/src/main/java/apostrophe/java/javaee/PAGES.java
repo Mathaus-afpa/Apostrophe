@@ -1,8 +1,4 @@
 package apostrophe.java.javaee;
-/**
- * [PAGES] - class
- * @author Mathaus
- */
 public class PAGES {
 	private PAGES() {}
 	public static String ADMINISTRATEUR = "/WEB-INF/Vues/Administrateur";

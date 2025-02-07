@@ -33,7 +33,7 @@ public class CompteRequetes {
 	}
 	//</editor-fold>
 	//<editor-fold defaultstate="expanded" desc="SELECT ALL">
-	public static final String SELECT_ALL = "SELECT " + CHAMPS_ID + ", " + CHAMPS_LOGIN + " FROM USERS";
+	public static final String SELECT_ALL = "SELECT " + CHAMPS_ID + ", " + CHAMPS_LOGIN + ", " + CHAMPS_ROLE + " FROM USERS";
 	//</editor-fold>
 	//<editor-fold defaultstate="expanded" desc="UPDATE">
 	public static final String UPDATE = ""; //todo:
@@ -51,4 +51,11 @@ public class CompteRequetes {
 		return requetePreparee;
 	}
 	//</editor-fold>
+	public static final String SELECT_BY = "SELECT " + CHAMPS_PASSWORD + " FROM USERS WHERE " + CHAMPS_ID + " = ? AND " + CHAMPS_LOGIN + " = ?";
+	public static final PreparedStatement SelectByLogin(Connection connection, Compte compte) throws SQLException {
+		PreparedStatement requetePreparee = connection.prepareStatement(CompteRequetes.SELECT_BY);
+		requetePreparee.setInt(1, compte.getId());
+		requetePreparee.setString(2, compte.getLogin());
+		return requetePreparee;
+	}
 }

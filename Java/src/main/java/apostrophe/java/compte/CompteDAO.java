@@ -153,6 +153,7 @@ public class CompteDAO {
 		private void lireCompte(ResultSet reponse, Compte compte) throws SQLException, ModelException, RegExException, NullDataException {
 			compte.setId(reponse.getInt(CompteRequetes.CHAMPS_ID));
 			compte.setLogin(reponse.getString(CompteRequetes.CHAMPS_LOGIN));
+			compte.setRole(reponse.getInt(CompteRequetes.CHAMPS_ROLE));
 			if (Compte.ValiderCompte(compte)) { Cache.ajouter(compte); }
 			else { throw new ModelException("IApostropheInnerDAO<Compte>.lireCompte", ModelException.COMPTE); }
 		}
@@ -161,6 +162,26 @@ public class CompteDAO {
 			lock.unlock(); // Liberation du verrou pour permettre d'autres accès
 		}
 		//</editor-fold>
+		public String getComptePassword(Compte compte) throws DaoException, NullDataException {
+			String password = null;
+			lock.lock(); // verrouillage de la methode pour empecher les acces simultanes
+			try {
+				// creation de la requete
+				Connection connectionBDD = DataDB.getInstance().getConnection();
+				PreparedStatement requetePreparee = CompteRequetes.SelectByLogin(connectionBDD, compte);
+				ResultSet reponse = requetePreparee.executeQuery();
+				if (reponse.next()) {
+					password = reponse.getString(CompteRequetes.CHAMPS_PASSWORD);
+				} else {
+					password = null;
+				}
+			} catch (SQLException e) {
+				throw new DaoException("IApostropheInnerDAO<Compte>.getComptePassword", e.getClass().getSimpleName());
+			} finally {
+				cloturerAccesBdd();
+			}
+			return password;
+		}
 	}
 	//</editor-fold>
 	//<editor-fold defaultstate="expanded" desc="DAO">
@@ -193,5 +214,11 @@ public class CompteDAO {
 		catch (DaoException | NullDataException | ModelException e) {  Log.error(e.getMessage(), e.getCause()); }
 		return false;
 	}
+
+	public static String motDePasse(Compte compte) {
+		try { return dao().getComptePassword(compte);}
+		catch (DaoException | NullDataException e) {  Log.error(e.getMessage(), e.getCause()); }
+        return null;
+    }
 	//</editor-fold>
 }

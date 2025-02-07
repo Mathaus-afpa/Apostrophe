@@ -16,6 +16,7 @@ import apostrophe.java.livre.LivreDAO;
 import apostrophe.java.services.DataDB;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.TreeMap;
 /**
  * [Cache] - class
@@ -168,4 +169,10 @@ public class Cache {
 		}
 	}
 	//</editor-fold>
+	public static Compte CompteExist(String name) {
+		List<Compte> comptes = listerComptes();
+		return comptes.stream()
+				.filter(compte -> compte.getLogin().equals(name))
+				.findFirst().orElse(null);
+	}
 }
