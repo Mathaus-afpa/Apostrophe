@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: Fabulous
@@ -6,7 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ page session="false" %>
 <div class="p-4">
     <h1 class="font-semibold text-4xl text-center">Conditions Générales d'Utilisation & Politiques de confidentialité</h1>
     <p class="text-center italic">Exploitant : Staff ApostropheIvre.fr</p>

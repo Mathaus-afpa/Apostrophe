@@ -1,19 +1,20 @@
+<%@ page session="false" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="sidebar flex-col fixed top-0 bottom-0 left-0 mr-3 mt-3 mb-3 p-2 w-64 overflow-y-auto bg-slate-50 rounded-r-xl shadow-lg shadow-gray-500">
     <!-- Affichage du rôle de l'utilisateur -->
     <div class="flex flex-col items-center">
         <c:choose>
-            <c:when test="${not empty sessionScope.role}">
-                <span class="text-center text-red-500">${sessionScope.role}</span>
+            <c:when test="${not empty requestScope.role}">
+                <span class="text-center text-red-500">${requestScope.role}</span>
             </c:when>
             <c:otherwise>
                 <span class="text-center text-red-500">Visiteur</span>
             </c:otherwise>
         </c:choose>
         <c:choose>
-            <c:when test="${not empty sessionScope.utilisateur}">
-                <span class="text-center text-red-500">${sessionScope.utilisateur}</span>
+            <c:when test="${not empty requestScope.utilisateur}">
+                <span class="text-center text-red-500">${requestScope.utilisateur}</span>
             </c:when>
             <c:otherwise>
                 <span class="text-center text-red-500">?</span>
@@ -48,7 +49,7 @@
     </a>
     <!-- /Connexion -->
     <c:choose>
-        <c:when test="${not empty sessionScope.utilisateur}">
+        <c:when test="${not empty requestScope.utilisateur}">
             <a class="group" href="/Deconnexion">
                 <div class="p-2 pl-20 flex justify-start items-center bg-slate-50 rounded gap-3 hover:bg-gray-700 ease-in-out duration-300">
                     <svg class="w-8 text-gray-700 group-hover:text-lime-300" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor">
@@ -81,14 +82,44 @@
     </a>
 
     <c:choose>
-        <c:when test="${sessionScope.role == 'administrateur'}">
-            <h3 class="text-center">Administrateur</h3>
+        <c:when test="${requestScope.role == 'administrateur'}">
+            <h3 class="text-center"></h3>
+            <h3 class="text-center">-------------------</h3>
+            <h3 class="text-center">${requestScope.role}</h3>
+            <a class="group" href="/Administrateur">
+                <div class="p-2 pl-20 flex justify-start items-center bg-slate-50 rounded gap-3 hover:bg-gray-700 ease-in-out duration-300">
+                    <svg class="w-8 text-gray-700 group-hover:text-lime-300" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor" stroke="currentColor">
+                        <path d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 85-29 163.5T688-214L560-342q-18 11-38.5 16.5T480-320q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 22-5.5 42.5T618-398l60 60q20-41 31-86t11-92v-189l-240-90-240 90v189q0 121 68 220t172 132q26-8 49.5-20.5T576-214l56 56q-33 27-71.5 47T480-80Zm0-320q33 0 56.5-23.5T560-480q0-33-23.5-56.5T480-560q-33 0-56.5 23.5T400-480q0 33 23.5 56.5T480-400Zm8-77Z"/>
+                    </svg>
+                    <span class="text-gray-700 font-medium group-hover:text-lime-300 group-hover:font-normal">Gestion</span>
+                </div>
+            </a>
         </c:when>
-        <c:when test="${sessionScope.role == 'libraire'}">
-            <h3 class="text-center">Libraire</h3>
+        <c:when test="${requestScope.role == 'libraire'}">
+            <h3 class="text-center"></h3>
+            <h3 class="text-center">-------------------</h3>
+            <h3 class="text-center">${requestScope.role}</h3>
+            <a class="group" href="/Libraire">
+                <div class="p-2 pl-20 flex justify-start items-center bg-slate-50 rounded gap-3 hover:bg-gray-700 ease-in-out duration-300">
+                    <svg class="w-8 text-gray-700 group-hover:text-lime-300" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor" stroke="currentColor">
+                        <path d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 85-29 163.5T688-214L560-342q-18 11-38.5 16.5T480-320q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 22-5.5 42.5T618-398l60 60q20-41 31-86t11-92v-189l-240-90-240 90v189q0 121 68 220t172 132q26-8 49.5-20.5T576-214l56 56q-33 27-71.5 47T480-80Zm0-320q33 0 56.5-23.5T560-480q0-33-23.5-56.5T480-560q-33 0-56.5 23.5T400-480q0 33 23.5 56.5T480-400Zm8-77Z"/>
+                    </svg>
+                    <span class="text-gray-700 font-medium group-hover:text-lime-300 group-hover:font-normal">Gestion</span>
+                </div>
+            </a>
         </c:when>
-        <c:when test="${sessionScope.role == 'client'}">
-            <h3 class="text-center">Client</h3>
+        <c:when test="${requestScope.role == 'client'}">
+            <h3 class="text-center"></h3>
+            <h3 class="text-center">-------------------</h3>
+            <h3 class="text-center">${requestScope.role}</h3>
+            <a class="group" href="/Client">
+                <div class="p-2 pl-20 flex justify-start items-center bg-slate-50 rounded gap-3 hover:bg-gray-700 ease-in-out duration-300">
+                    <svg class="w-8 text-gray-700 group-hover:text-lime-300" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor" stroke="currentColor">
+                        <path d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 85-29 163.5T688-214L560-342q-18 11-38.5 16.5T480-320q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 22-5.5 42.5T618-398l60 60q20-41 31-86t11-92v-189l-240-90-240 90v189q0 121 68 220t172 132q26-8 49.5-20.5T576-214l56 56q-33 27-71.5 47T480-80Zm0-320q33 0 56.5-23.5T560-480q0-33-23.5-56.5T480-560q-33 0-56.5 23.5T400-480q0 33 23.5 56.5T480-400Zm8-77Z"/>
+                    </svg>
+                    <span class="text-gray-700 font-medium group-hover:text-lime-300 group-hover:font-normal">Emprunts</span>
+                </div>
+            </a>
         </c:when>
     </c:choose>
 </div>

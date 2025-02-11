@@ -1,9 +1,5 @@
-package apostrophe.java.javaee.connexion;
-/**
- * [SuiviConnexion] - class
- * @author Mathaus
- */
-public class SuiviConnexion {
+package apostrophe.java.javaee.services;
+public class SuiviConnexionService {
 	// Variable ThreadLocal pour suivre si l'utilisateur est connecte ou non
 	private static ThreadLocal<Boolean> utilisateurConnecte = new ThreadLocal<>();
 	/**

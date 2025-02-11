@@ -1,4 +1,4 @@
-package apostrophe.java.javaee.visiteur;
+package apostrophe.java.javaee.visiteur.auth;
 import apostrophe.java.javaee.PAGES;
 import apostrophe.java.utilitaires.Log;
 import jakarta.servlet.RequestDispatcher;
@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 @WebServlet("/Recuperation")
-public class MotDePassePerduServlet extends HttpServlet {
+public class RecuperationServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		try {

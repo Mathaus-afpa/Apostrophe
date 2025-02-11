@@ -1,10 +1,14 @@
 package apostrophe.java.javaee;
 public class PAGES {
+
+
 	private PAGES() {}
-	public static String ADMINISTRATEUR = "/WEB-INF/Vues/Administrateur";
-	public static String LIBRAIRE = "/WEB-INF/Vues/Libraire";
-	public static String CLIENT = "/WEB-INF/Vues/Client";
+	public static String GESTION = "/WEB-INF/Vues/Gestion";
 	public static String VISITEUR = "/WEB-INF/Vues/Visiteur";
+	public static String MEMBRE = "/WEB-INF/Vues/Membre";
+	public static String ADMINISTRATEUR = "/administrateur.jsp";
+	public static final String LIBRAIRE = "/libraire.jsp";
+	public static String EMPRUNT = "/emprunter.jsp";
 	public static String MODULE = "/WEB-INF/Modules";
 	public static String APP = "/app.jsp";
 	public static String ACCUEIL = "/accueil.jsp";
@@ -21,7 +25,7 @@ public class PAGES {
 	public static String DETAILS_AUTEUR = "/auteur.jsp";
 	public static String LISTE_CATEGORIES = "/categories.jsp";
 	public static String DETAILS_CATEGORIE = "/categorie.jsp";
-	public static String LISTE_LIVRES = "/tableau.jsp";
+	public static String TABLEAU = "/tableau.jsp";
 	public static String DETAILS_LIVRE = "/Livres/livre.jsp";
 	public static String LISTE_CLIENTS = "/clients.jsp";
 	public static String DETAILS_CLIENT = "/client.jsp";

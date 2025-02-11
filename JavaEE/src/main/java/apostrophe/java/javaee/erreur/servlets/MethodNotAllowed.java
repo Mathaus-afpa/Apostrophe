@@ -1,4 +1,4 @@
-package apostrophe.java.javaee.status;
+package apostrophe.java.javaee.erreur.servlets;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;

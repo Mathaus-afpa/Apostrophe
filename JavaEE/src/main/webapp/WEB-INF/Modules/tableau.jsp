@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page session="false" %>
 <div style="width: 100%; position: sticky;">
     <h1>${param.module}</h1>
 </div>
@@ -43,17 +44,22 @@
         <tbody>
         <c:choose>
             <c:when test="${param.module == 'COMPTES'}">
+                <jsp:include page="/WEB-INF/Vues/Gestion/Comptes/comptes.jsp"></jsp:include>
             </c:when>
             <c:when test="${param.module == 'LIBRAIRES'}">
+                <jsp:include page="/WEB-INF/Vues/Gestion/Libraires/libraires.jsp"></jsp:include>
             </c:when>
             <c:when test="${param.module == 'AUTEURS'}">
+                <jsp:include page="/WEB-INF/Vues/Gestion/Auteurs/auteurs.jsp"></jsp:include>
             </c:when>
             <c:when test="${param.module == 'CATEGORIES'}">
+                <jsp:include page="/WEB-INF/Vues/Gestion/Categories/categories.jsp"></jsp:include>
             </c:when>
             <c:when test="${param.module == 'LIVRES'}">
                 <jsp:include page="/WEB-INF/Vues/Visiteur/Livres/livres.jsp"></jsp:include>
             </c:when>
             <c:when test="${param.module == 'CLIENTS'}">
+                <jsp:include page="/WEB-INF/Vues/Gestion/Clients/clients.jsp"></jsp:include>
             </c:when>
             <c:otherwise>
                 <p>Type inconnu, affichage par défaut</p>

@@ -1,13 +1,13 @@
-package apostrophe.java.javaee.status;
+package apostrophe.java.javaee.erreur.servlets;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-@WebServlet("/404")
-public class NotFoundServlet extends HttpServlet {
+@WebServlet("/InternalServerError")
+public class InternalServerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.sendError(HttpServletResponse.SC_NOT_FOUND, "404");
+        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "500");
     }
 }

@@ -2,3 +2,4 @@
 <%@ include file="head.html" %>
 <%@ include file="/WEB-INF/menu.jsp" %>
 <%@ include file="close.html" %>
+<%@ page session="false" %>
