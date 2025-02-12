@@ -37,4 +37,21 @@ public class EmpruntServlet extends HttpServlet {
 			response.sendRedirect(ROUTES.CONNEXION);
 		}
 	}
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		Compte compteUtilisateur = SessionService.recuperationCompte(request);
+		if (compteUtilisateur != null) {
+			String role = compteUtilisateur.getRole();
+			if (role.equals("client")) {
+				String id = request.getParameter("livre");
+				System.out.println("id: " + id);
+			} else if (role.equals("administrateur") || role.equals("libraire")) {
+				response.sendRedirect(ROUTES.ACCUEIL);
+			} else response.sendRedirect(ROUTES.UNAUTHORIZED);
+		} else {
+			SessionService.nettoyerSession(request);
+			response.sendRedirect(ROUTES.CONNEXION);
+		}
+	}
 }

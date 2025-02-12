@@ -1,4 +1,5 @@
 <%@ page session="false" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="w-80 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
     <a href="${pageContext.request.contextPath}/Livre?id=${param.livreId}">
         <img src="${pageContext.request.contextPath}/Images/Livres/${param.livreImage}" alt="photo livre"

@@ -1,13 +1,5 @@
-
-<%--
-  Created by IntelliJ IDEA.
-  User: Fabulous
-  Date: 29/01/2025
-  Time: 13:00
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page session="false" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="p-4">
     <h1 class="font-semibold text-4xl text-center">Conditions Générales d'Utilisation & Politiques de confidentialité</h1>
     <p class="text-center italic">Exploitant : Staff ApostropheIvre.fr</p>

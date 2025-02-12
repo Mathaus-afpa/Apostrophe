@@ -1,6 +1,6 @@
+<%@ page session="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page session="false" %>
 <h1 class="text text-7xl mt-3">Bienvenue !</h1>
 
 <div class="mt-16 flex items-center border w-80 focus-within:border-neutral-500 transition duration-300 pr-3 gap-2 bg-white border-gray-500/30 h-[46px] rounded-[5px] overflow-hidden">
