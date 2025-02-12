@@ -13,7 +13,7 @@ public class RecuperationServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		try {
-			request.setAttribute("page", PAGES.VISITEUR + PAGES.MDP);
+			request.setAttribute("page", PAGES.VISITEUR + PAGES.RECUPERATION);
 			RequestDispatcher dispatcher = request.getRequestDispatcher(PAGES.APP);
 			dispatcher.forward(request, response);
 		} catch (ServletException e) {
